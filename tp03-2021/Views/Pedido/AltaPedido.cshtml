@@ -1,0 +1,85 @@
+﻿@model List<tp03_2021.Models.Cadete>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AltaPedido</title>
+</head>
+<body>
+
+    <h4>Pedido</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="CrearPedido" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label for="Id" class="control-label"></label>
+                    <input name="Id" class="form-control"  type="hidden" />
+
+                </div>
+                <div class="form-check-inline">
+                    
+                    <div class="form-group">
+                        <label for="Cadete" class="control-label">Seleccione cadete</label>                       
+                        <select for="Cadete" name="CadeteId">
+                            @foreach (var Cadete in Model)
+                            {
+                                <option value="@Cadete.Id">@Cadete.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="bg-transparent">
+                    <div class="form-group">
+                        <label for="Observaciones" class="control-label">Observaciones</label>
+                        <div>
+                            <textarea name="observaciones" rows="5" cols="50" class="text-black-50" placeholder="Observaciones"></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Estado" class="control-label">Estado del pedido</label>
+                        <select name="estado">
+                            <option value="0">Entregado</option>
+                            <option value="1">En camino</option>
+                            <option value="2">Devuelto</option>
+                            
+                        </select>
+                        <span validation-for="Estado" class="text-danger"></span>
+                    </div>
+                    <h3>Cliente</h3>
+                    <div class="form-group">
+                        <label for="nombre" class="control-label">Nombre</label>
+                        <input name="nombre" class="form-control" type="text" />
+
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion" class="control-label">Direccion</label>
+                        <input name="direccion" class="form-control" type="text" />
+
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono" class="control-label">Telefono</label>
+                        <input name="telefono" class="form-control" type="text" />
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Crear" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Ver lista de pedidos</a>
+    </div>
+
+</body>
+</html>

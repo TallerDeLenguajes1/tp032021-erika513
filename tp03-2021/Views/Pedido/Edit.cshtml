@@ -1,0 +1,90 @@
+﻿@model tp03_2021.ViewModels.EditPedidoRequest
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AltaPedido</title>
+</head>
+<body>
+
+    <h4>Pedido</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="EditPedido" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Id" class="control-label"></label>
+                    <input asp-for="Id" class="form-control" type="hidden" />
+
+                </div>
+                <div class="form-check-inline">
+
+                    <div class="form-group">
+                        <label for="Cadete" class="control-label">Seleccione cadete</label>
+                        <select for="Cadete" asp-for="Cadete.Id">
+                            @foreach (var Cadete in Model.Cadetes)
+                            {
+                                <option value="@Cadete.Id">@Cadete.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="bg-transparent">
+                    <div class="form-group">
+                        <label asp-for="Observaciones" class="control-label">Observaciones</label>
+                        <div>
+                            <textarea asp-for="Observaciones" rows="10" cols="50" class="text-black-50" placeholder="Observaciones"></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Estado" class="control-label">Estado del pedido</label>
+                        <select asp-for="Estado">
+                            <option value="0">Entregado</option>
+                            <option value="1">En camino</option>
+                            <option value="2">Devuelto</option>
+                            
+                        </select>
+                        <span asp-validation-for="Estado" class="text-danger"></span>
+                    </div>
+                    <h3>Cliente</h3>
+                    <div class="form-group">
+                        <label asp-for="Cliente.Id" class="control-label"></label>
+                        <input asp-for="Cliente.Id" class="form-control" type="hidden" />
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Cliente.Nombre" class="control-label">Nombre</label>
+                        <input asp-for="Cliente.Nombre" class="form-control" type="text" />
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Cliente.Direccion" class="control-label">Direccion</label>
+                        <input asp-for="Cliente.Direccion" class="form-control" type="text" />
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Cliente.Telefono" class="control-label">Telefono</label>
+                        <input asp-for="Cliente.Telefono" class="form-control" type="text" />
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Enviar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+</body>
+</html>
